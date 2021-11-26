@@ -1,0 +1,29 @@
+{
+  "name": "myflix-ourveryown",
+  "version": "1.0.0",
+  "description": "Well hello there again :)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiroV/myFlix-OurVeryOwn.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TiroV/myFlix-OurVeryOwn/issues"
+  },
+  "homepage": "https://github.com/TiroV/myFlix-OurVeryOwn#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.3.0"
+  }
+}
