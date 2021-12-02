@@ -53,14 +53,18 @@ let topTenMovies = [
 //The front page of the server.
 app.get('/', (req, res) => {
   res.send('Soon to be a wonderful repository of amazing movies. Stay tuned!');
+
 });
 //The location that shows the documentation on what the website will be.
 app.get('/documentation', (req, res) => {
   res.sendFile('public/documentation.html', { root: __dirname });
+  //Validating through console that the pull was sucessful.
+    
 });
 //The directory that calls for the function to pull the topTenMovies function.
 app.get('/movies', (req, res) => {
   res.json(topTenMovies);
+
 });
 
 
