@@ -12,6 +12,18 @@
   <li>http://127.0.0.1:8080/documentation   is this page that details all the information about the API. GET method. Returns ::ffff:127.0.0.1 - - [02/Dec/2021:00:06:13 +0000] "GET /documentation HTTP/1.1" 304 -</li>
   <li>http://127.0.0.1:8080/   is the home page. Soon to be populated with more details. GET method. Returns ::ffff:127.0.0.1 - - [02/Dec/2021:00:12:21 +0000] "GET / HTTP/1.1" 304 -</li>
   <li>http://127.0.0.1:8080/movies   contains the list of movies. GET method. Returns ::ffff:127.0.0.1 - - [02/Dec/2021:00:12:58 +0000] "GET /movies HTTP/1.1" 304 -</li>
+  <li>http://127.0.0.1:8080/movies/title Returns movie title.  GET method. ::ffff:127.0.0.1 - - [02/Dec/2021:21:07:27 +0000] "GET /movies/title HTTP/1.1" 200 20</li>
+  <li>http://127.0.0.1:8080/genres returns a list of movie genres. GET method. ::ffff:127.0.0.1 - - [02/Dec/2021:21:11:22 +0000] "GET /genres HTTP/1.1" 200 23</li>
+  <li>http://127.0.0.1:8080/genres/name returns a specific movie genre. ::ffff:127.0.0.1 - - [02/Dec/2021:21:12:39 +0000] "GET /genres/name HTTP/1.1" 200 33</li>
+  <li>http://127.0.0.1:8080/directors Returns a list of directors.  GET method. ::ffff:127.0.0.1 - - [02/Dec/2021:21:14:06 +0000] "GET /directors HTTP/1.1" 200 28</li>
+  <li>http://127.0.0.1:8080/directors/name Returns a list of directors by name. GET method. ::ffff:127.0.0.1 - - [02/Dec/2021:21:15:31 +0000] "GET /directors/name HTTP/1.1" 200 27</li>
+  <li>http://127.0.0.1:8080/users Returns a list of users
+  <li>http://127.0.0.1:8080/users/register Allows a user to register
+  <li>http://127.0.0.1:8080/users/update Allows a user to update their account
+  <li>http://127.0.0.1:8080/users/userDelete Allows a user to delete their account
+  <li>http://127.0.0.1:8080/users/movies/addMovie Allows a user to add their own movies
+  <li>http://127.0.0.1:8080/users/movies/removeMovie Allows a user to remove their own movies
+  <li>http://127.0.0.1:8080/users/username Returns a specific username
 </ul>
   </body>
 </html>

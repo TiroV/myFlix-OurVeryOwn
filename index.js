@@ -8,11 +8,20 @@ app.use(morgan('common'));
 let topTenMovies = [
   {
     title: 'Akira',
-    director: 'Katsuhiro Otomo'
+    released: '1990',
+    genre: 'Cyberpunk',
+    director: {
+      name: 'Katsuhiro Otomo',
+      born: '1954',
+      died: 'n/a',
+      bio: 'ゴゴゴゴ'
+    }
+
+
   },
   {
     title: 'Ponyo',
-    author: 'Hyao Miyazaki'
+    director: 'Hyao Miyazaki'
   },
   {
     title: 'Penguin Highway',
@@ -49,23 +58,99 @@ let topTenMovies = [
 
 ];
 
-// GET requests
+// GET requests. The endpoints.
 //The front page of the server.
 app.get('/', (req, res) => {
   res.send('Soon to be a wonderful repository of amazing movies. Stay tuned!');
 
 });
+
 //The location that shows the documentation on what the website will be.
 app.get('/documentation', (req, res) => {
   res.sendFile('public/documentation.html', { root: __dirname });
   //Validating through console that the pull was sucessful.
-    
+
 });
 //The directory that calls for the function to pull the topTenMovies function.
 app.get('/movies', (req, res) => {
   res.json(topTenMovies);
 
 });
+
+//The specific title of a movie.
+app.get('/movies/title', (req, res) => {
+  res.send('Returns movie title.');
+
+});
+
+//A list of genres
+app.get('/genres', (req, res) => {
+  res.send('Returns list of genres.');
+
+});
+
+//The specific name of a genre
+app.get('/genres/name', (req, res) => {
+  res.send('Returns a specific movie by name.');
+
+});
+
+//A search for directors
+app.get('/directors', (req, res) => {
+  res.send('Returns a list of directors.');
+
+});
+//For specific directors
+app.get('/directors/name', (req, res) => {
+  res.send('Returns specific directors by name.');
+
+});
+//USER INFO HERE ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+//Get all users
+app.get('/users', (req, res) => {
+  res.send('Returns all users.');
+
+
+});
+//Allows users to register
+app.get('/users/register', (req, res) => {
+  res.send('To register your account');
+
+
+});
+//To allow users to update their usernames
+app.get('/users/update', (req, res) => {
+  res.send('Allows users to update their information.');
+
+
+});
+//To allow users to add a movie to the list
+app.get('/users/movies/addMovie', (req, res) => {
+  res.send('To allow users to add their own movies');
+
+
+});
+//To allow users to update their usernames
+app.get('/users/movies/removeMovie', (req, res) => {
+  res.send('To allow users to remove their own movies');
+
+
+});
+//To allow users to delete their account
+app.get('/users/userDelete', (req, res) => {
+  res.send('To allow users to delete their own account.');
+
+
+});
+//Get a specific user's name
+app.get('/users/username', (req, res) => {
+  res.send('Return a specific user name.');
+
+//END OF USER INFO ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+});
+
+
+
 
 
 // listen for requests
