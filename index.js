@@ -78,7 +78,7 @@ app.get('/movies', (req, res) => {
 });
 
 //The specific title of a movie.
-app.get('/movies/title', (req, res) => {
+app.get('/movies/:title', (req, res) => {
   res.send('Returns movie title.');
 
 });
@@ -90,7 +90,7 @@ app.get('/genres', (req, res) => {
 });
 
 //The specific name of a genre
-app.get('/genres/name', (req, res) => {
+app.get('/genres/:genre', (req, res) => {
   res.send('Returns a specific movie by name.');
 
 });
@@ -101,7 +101,7 @@ app.get('/directors', (req, res) => {
 
 });
 //For specific directors
-app.get('/directors/name', (req, res) => {
+app.get('/directors/:name', (req, res) => {
   res.send('Returns specific directors by name.');
 
 });
@@ -113,37 +113,37 @@ app.get('/users', (req, res) => {
 
 });
 //Allows users to register
-app.get('/users/register', (req, res) => {
-  res.send('To register your account');
+app.post('/users/:register', (req, res) => {
+  res.send('Account is now registered');
 
 
 });
 //To allow users to update their usernames
-app.get('/users/update', (req, res) => {
+app.put('/users/:update', (req, res) => {
   res.send('Allows users to update their information.');
 
 
 });
 //To allow users to add a movie to the list
-app.get('/users/movies/addMovie', (req, res) => {
-  res.send('To allow users to add their own movies');
+app.post('/users/:movies/:addMovie', (req, res) => {
+  res.send('Movie Added!');
 
 
 });
 //To allow users to update their usernames
-app.get('/users/movies/removeMovie', (req, res) => {
-  res.send('To allow users to remove their own movies');
+app.delete('/users/:movies/:removeMovie', (req, res) => {
+  res.send('Movie Removed!');
 
 
 });
 //To allow users to delete their account
-app.get('/users/userDelete', (req, res) => {
-  res.send('To allow users to delete their own account.');
+app.delete('/users/:userDelete', (req, res) => {
+  res.send('Account Deleted.');
 
 
 });
 //Get a specific user's name
-app.get('/users/username', (req, res) => {
+app.get('/users/:username', (req, res) => {
   res.send('Return a specific user name.');
 
 //END OF USER INFO ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
