@@ -21,7 +21,8 @@ let topTenMovies = [
   },
   {
     title: 'Ponyo',
-    director: 'Hyao Miyazaki'
+    director: 'Hyao Miyazaki',
+    genre: 'Cyberpunk',
   },
   {
     title: 'Penguin Highway',
@@ -79,7 +80,8 @@ app.get('/movies', (req, res) => {
 
 //The specific title of a movie.
 app.get('/movies/:title', (req, res) => {
-  res.send('Returns movie title.');
+  res.json(topTenMovies.find((movie) =>
+    { return movie.title === req.params.title }));
 
 });
 
@@ -91,8 +93,8 @@ app.get('/genres', (req, res) => {
 
 //The specific name of a genre
 app.get('/genres/:genre', (req, res) => {
-  res.send('Returns a specific movie by name.');
-
+  res.json(topTenMovies.find((movie) =>
+    { return movie.genre === req.params.genre }));
 });
 
 //A search for directors
@@ -113,31 +115,31 @@ app.get('/users', (req, res) => {
 
 });
 //Allows users to register
-app.post('/users/:register', (req, res) => {
+app.post('/users', (req, res) => {
   res.send('Account is now registered');
 
 
 });
 //To allow users to update their usernames
-app.put('/users/:update', (req, res) => {
+app.put('/users/:userId', (req, res) => {
   res.send('Allows users to update their information.');
 
 
 });
 //To allow users to add a movie to the list
-app.post('/users/:movies/:addMovie', (req, res) => {
+app.post('/users/:userId/:movies/:movieId', (req, res) => {
   res.send('Movie Added!');
 
 
 });
 //To allow users to update their usernames
-app.delete('/users/:movies/:removeMovie', (req, res) => {
+app.delete('/users/:userId/:movies/:movieId', (req, res) => {
   res.send('Movie Removed!');
 
 
 });
 //To allow users to delete their account
-app.delete('/users/:userDelete', (req, res) => {
+app.delete('/users/:username', (req, res) => {
   res.send('Account Deleted.');
 
 
