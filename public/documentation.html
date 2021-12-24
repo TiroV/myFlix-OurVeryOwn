@@ -9,21 +9,18 @@
     <h1>MyFlix</h1>
     <p>Welcome to the documentation page!</p>
       <ul>
-  <li>http://127.0.0.1:8080/   is the home page. Soon to be populated with more details. GET method. Returns ::ffff:127.0.0.1 - - [02/Dec/2021:00:12:21 +0000] "GET / HTTP/1.1" 304 -</li>
-  <li>http://127.0.0.1:8080/documentation   is this page that details all the information about the API. GET method. Returns ::ffff:127.0.0.1 - - [02/Dec/2021:00:06:13 +0000] "GET /documentation HTTP/1.1" 304 -</li>
-  <li>http://127.0.0.1:8080/movies   contains the list of movies. GET method. Returns ::ffff:127.0.0.1 - - [02/Dec/2021:00:12:58 +0000] "GET /movies HTTP/1.1" 304 -</li>
-  <li>http://127.0.0.1:8080/movies/:title Returns movie title.  GET method. ::ffff:127.0.0.1 - - [02/Dec/2021:21:07:27 +0000] "GET /movies/title HTTP/1.1" 200 20</li>
-  <li>http://127.0.0.1:8080/genres returns a list of movie genres. GET method. ::ffff:127.0.0.1 - - [02/Dec/2021:21:11:22 +0000] "GET /genres HTTP/1.1" 200 23</li>
-  <li>http://127.0.0.1:8080/genres/:genre returns a specific movie genre. ::ffff:127.0.0.1 - - [02/Dec/2021:21:12:39 +0000] "GET /genres/name HTTP/1.1" 200 33</li>
-  <li>http://127.0.0.1:8080/directors Returns a list of directors.  GET method. ::ffff:127.0.0.1 - - [02/Dec/2021:21:14:06 +0000] "GET /directors HTTP/1.1" 200 28</li>
-  <li>http://127.0.0.1:8080/directors/:name Returns a list of directors by name. GET method. ::ffff:127.0.0.1 - - [02/Dec/2021:21:15:31 +0000] "GET /directors/name HTTP/1.1" 200 27</li>
-  <li>http://127.0.0.1:8080/users Returns a list of users. GET method.
-  <li>http://127.0.0.1:8080/users/:username Allows a user to register. POST method.
-  <li>http://127.0.0.1:8080/users/:userId Allows a user to update their account. PUT method.
-  <li>http://127.0.0.1:8080/users/:username Allows a user to delete their account. DELETE method.
-  <li>http://127.0.0.1:8080/users/:userId/:movies/:movieId Allows a user to add their own movies. POST method.
-  <li>http://127.0.0.1:8080/users/:userId/:movies/:movieId Allows a user to remove their own movies. DELETE method.
-  <li>http://127.0.0.1:8080/users/:username Returns a specific username. GET method.
+  <li>http://127.0.0.1:8080/   is the home page. Soon to be populated with more details.</li>
+  <li>http://127.0.0.1:8080/documentation   is this page that details all the information about the API. GET method. </li>
+  <li>http://127.0.0.1:8080/movies   contains the list of movies. GET method.</li>
+  <li>http://127.0.0.1:8080/movies/:title Returns movie title.  GET method.</li>
+  <li>http://127.0.0.1:8080/genres returns a list of movie genres. GET method.</li>
+  <li>http://127.0.0.1:8080/genres/:name returns a specific movie genre.</li>
+  <li>http://127.0.0.1:8080/directors Returns a list of directors.  GET method.</li>
+  <li>http://127.0.0.1:8080/directors/:name Returns a list of directors by name. GET method.</li>
+  <li>http://127.0.0.1:8080/users Returns a list of users. GET and POST method</li>
+  <li>http://127.0.0.1:8080/users/:username Allows a user to register, delete their own account, update their information and search for their account by name. POST, DELETE, GET, PUT Method.</li>
+  <li>http://127.0.0.1:8080/users/:username Allows a user to delete their account. DELETE method.</li>
+  <li>http://127.0.0.1:8080/users/:userId/:movies/:movieId Allows a user to add and delete their own movies.POST and DELETE method, respectfully.</li>
 </ul>
   </body>
 </html>

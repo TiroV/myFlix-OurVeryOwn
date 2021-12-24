@@ -20,9 +20,10 @@
   "homepage": "https://github.com/TiroV/myFlix-OurVeryOwn#readme",
   "dependencies": {
     "@types/express": "^4.17.13",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.19.1",
     "express": "^4.17.1",
     "lodash": "^4.17.21",
+    "mongoose": "^6.1.2",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
