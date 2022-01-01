@@ -255,7 +255,7 @@ app.post('/users/:Username/movies/:MovieID', (req, res) => {
 
 
 //To allow users to update their usernames
-app.delete('/users/:Username/:movies/:movieID', (req, res) => {
+app.delete('/users/:Username/movies/:MovieID', (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
      $pull: { FavoriteMovies: req.params.MovieID }
    },
