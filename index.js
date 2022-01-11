@@ -4,6 +4,8 @@ const app = express();
 
 app.use(morgan('common'));
 
+const { check, validationResult } = require('express-validator');
+
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 
@@ -18,72 +20,26 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//For using the cors package
+const cors = require('cors');
+let allowedOrigins = ['http:://localhost:8080', 'http://testsite.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn't found on the list of allowed origins
+      let message = 'the CORS policy for this application does not allow all access from origin ' + origin;
+      return callback(new Error(message ), false);
+  }
+  return callback(null, true);
+}
+}));
+
 let auth = require('./auth')(app);
 
 const passport = require('passport');
 require('./passport');
 
-
-
-
-
-
-
-
-//Function for the movie list!
-let topTenMovies = [
-  {
-    title: 'Akira',
-    released: '1990',
-    genre: 'Cyberpunk',
-    director: {
-      name: 'Katsuhiro Otomo',
-      born: '1954',
-      died: 'n/a',
-      bio: 'ゴゴゴゴ'
-    }
-
-
-  },
-  {
-    title: 'Ponyo',
-    director: 'Hyao Miyazaki',
-    genre: 'Cyberpunk',
-  },
-  {
-    title: 'Penguin Highway',
-    director: 'Hiroyasu Ishida'
-  },
-  {
-    title: 'Blade Runner',
-    director: 'Ridley Scott'
-  },
-  {
-    title: 'Shang-Chi and the Legend of the Ten Rings',
-    director: 'Destin Daniel Cretton'
-  },
-  {
-    title: 'Dune',
-    director: 'Denis Villeneuve'
-  },
-  {
-    title: 'The Secret of NIMH',
-    director: 'Don Bluth'
-  },
-  {
-    title: 'Tokyo Godfathers',
-    director: 'Satoshi Kon'
-  },
-  {
-    title: 'Coco',
-    director: 'Lee Unkrich'
-  },
-  {
-    title: 'Ender\'s Game',
-    director: 'Gavin Hood'
-  },
-
-];
 
 // GET requests. The endpoints.
 //The front page of the server.
@@ -183,31 +139,52 @@ app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) =
   Email: String,
   Birthday: Date
 }*/
-app.post('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Users.findOne({ Username: req.body.Username })
-    .then((user) => {
-      if (user) {
-        return res.status(400).send(req.body.Username + 'already exists');
-      } else {
-        Users
-          .create({
-            Username: req.body.Username,
-            Password: req.body.Password,
-            Email: req.body.Email,
-            Birthday: req.body.Birthday
-          })
-          .then((user) =>{res.status(201).json(user) })
-        .catch((error) => {
-          console.error(error);
-          res.status(500).send('Error: ' + error);
-        })
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send('Error: ' + error);
-    });
-});
+app.post('/users',
+  // Validation logic here for request
+  //you can either use a chain of methods like .not().isEmpty()
+  //which means "opposite of isEmpty" in plain english "is not empty"
+  //or use .isLength({min: 5}) which means
+  //minimum value of 5 characters are only allowed
+  [
+    check('Username', 'Username is required').isLength({min: 5}),
+    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail()
+  ], (req, res) => {
+
+  // check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    let hashedPassword = Users.hashPassword(req.body.Password);
+    Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+      .then((user) => {
+        if (user) {
+          //If the user is found, send a response that it already exists
+          return res.status(400).send(req.body.Username + ' already exists');
+        } else {
+          Users
+            .create({
+              Username: req.body.Username,
+              Password: hashedPassword,
+              Email: req.body.Email,
+              Birthday: req.body.Birthday
+            })
+            .then((user) => { res.status(201).json(user) })
+            .catch((error) => {
+              console.error(error);
+              res.status(500).send('Error: ' + error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error: ' + error);
+      });
+  });
 
 //To allow users to update their user info, by specific username
 /* We’ll expect JSON in this format
@@ -315,6 +292,7 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (r
 
 
 // listen for requests
-app.listen(8080, () => {
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0', () => {
   console.log('Your app is listening on port 8080.');
 });
