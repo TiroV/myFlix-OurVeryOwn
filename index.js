@@ -14,7 +14,11 @@ const Users = Models.User;
 const Genres = Models.Genre;
 const Directors = Models.Director;
 
-mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true });
+//Original Mongoose connect line, for local. Comment out when being unused!
+//mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true });
+
+//New mongoose connect, for server connecting. Comment out when being unused!
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
