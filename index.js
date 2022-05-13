@@ -1,6 +1,7 @@
 const express = require('express');
 morgan = require('morgan');
 const app = express();
+const cors = require('cors');
 
 app.use(morgan('common'));
 
@@ -25,7 +26,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //For using the cors package
-const cors = require('cors');
 let allowedOrigins = ['http:://localhost:8080', 'http://localhost:1234', 'http://testsite.com', 'https://our-very-own.herokuapp.com/'];
 
 app.use(cors({
