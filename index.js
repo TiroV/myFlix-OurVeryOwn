@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //For using the cors package
-let allowedOrigins = ['http:://localhost:8080', 'http://localhost:1234', 'http://testsite.com', 'https://our-very-own.herokuapp.com/'];
+let allowedOrigins = ['http:://localhost:8080', 'http://localhost:1234', 'http://testsite.com', 'http://localhost:4200', 'https://our-very-own.herokuapp.com/'];
 
 app.use(cors({
   origin: (origin, callback) => {
